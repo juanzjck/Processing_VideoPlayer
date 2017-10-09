@@ -1,9 +1,9 @@
 
 import processing.video.*;
-public class VideoPlayer extends PApplet {
+public class VideoPlayerr extends PApplet {
    Movie myMovie;
 String path;
-VideoPlayer(String pathfild) {
+VideoPlayerr(String pathfild) {
  
     super();
      path= pathfild;

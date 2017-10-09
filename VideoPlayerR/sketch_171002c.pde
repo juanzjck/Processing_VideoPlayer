@@ -4,7 +4,7 @@ import java.util.List;
 import processing.video.Movie;
 File dir; 
 File [] files;
-VideoPlayer reproductor;
+VideoPlayerr reproductor;
 String [] filesPath;
 int n=20;
 int video=0;
@@ -37,7 +37,7 @@ void draw() {
       {
         String path = files[i].getAbsolutePath();
          
-        if (path.toLowerCase().endsWith(".mov") )
+        if (path.toLowerCase().endsWith(".mp4") )
         {
           n=n+25;
          //filesPath[i]=files[i].getAbsolutePath();
@@ -45,6 +45,7 @@ void draw() {
           text(path.toLowerCase() + "peusto"+ i,20,n);
         }
       } 
+      //clear();
 }catch(Exception e){}  
     
     text(video,500,15);  
@@ -58,11 +59,15 @@ void draw() {
     if(keyPressed){
       if(key=='r'){
           flag=true;
-          path=files[video].getAbsolutePath();
+          path="file://"+files[video].getAbsolutePath();
          if(flag==true){ 
-            reproductor=new VideoPlayer(path);
-            
+           // reproductor=new VideoPlayerr(path);
+             link(path);
+               clear();
          }
+      }
+      if(key=='e'){
+       
       }
     }
   
