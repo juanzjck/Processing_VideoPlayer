@@ -7,7 +7,7 @@ File dir;
 File [] files;
 ControlP5 cp;
 ControlP5 cp2;
-VideoPlayerr reproductor;
+
 String [] filesPath;
 int n=20;
 int n2=0;
@@ -39,7 +39,7 @@ void draw() {
   fill(140);
   n=n2+30;
   
-  dir = new File(dataPath("/home/baon/sketchbook/mirada_maquina_v3/data/"));
+  dir = new File(dataPath("/Users/juansalazar/Documents/proyect/easy-party/mirada_maquina/data/"));
   files = dir.listFiles();
   try{  
  for (int i = 0; i <= files.length - 1; i++)
