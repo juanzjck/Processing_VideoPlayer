@@ -21,18 +21,21 @@ String path;
  }
 void setup() {
      noStroke();
+     video=0;
      cp = new ControlP5(this);
      cp.addButton("play").setValue(0).setPosition(850,250).setSize(40,20).activateBy(ControlP5.RELEASE);
      cp2= new ControlP5(this);
      cp.addButton("mas").setValue(1).setPosition(850,200).setSize(40,20).activateBy(ControlP5.RELEASE);
      cp.addButton("menos").setValue(2).setPosition(850,300).setSize(40,20).activateBy(ControlP5.RELEASE);
+     cp.addButton("siguiente").setValue(3).setPosition(850,450).setSize(40,20).activateBy(ControlP5.RELEASE);
+     cp.addButton("anterior").setValue(4).setPosition(750,450).setSize(40,20).activateBy(ControlP5.RELEASE);
    
 }
  
 void draw() { 
   background(0);
- text("Escribe el numero de videp para reproducir",10,15);
-  video=Character.getNumericValue(key); //<>//
+ 
+ // video=Character.getNumericValue(key); //<>//
   
  fill(140);
   n=n2+30;
@@ -55,16 +58,16 @@ void draw() {
       } 
       //clear();
 }catch(Exception e){}  
-    
-    text(video,500,15);  
+    text("El video a reproducir sera del,",750,400);
+    text("puesto:"+video,800,420);  
 
      
    
       
  
   }
-  
- public  void play(int value){
+
+ public  void play(){
      flag=true;
           path="file://"+files[video].getAbsolutePath();
          if(flag==true){ 
@@ -73,25 +76,26 @@ void draw() {
                clear();
          }
   }
-  public  void mas(int value){
+  public  void mas(){
        
          n2=n2-40;
          
   }
-   public  void menos(int value){
+   public  void menos(){
        n2=n2+40;
          
   }
+    public void siguiente(){
+      video=video+1;
+  }
+  public void anterior(){
+      video=video-1;
+  }
+  
   void keyPressed(){
     if(keyPressed){
       if(key=='r'){
-          flag=true;
-          path="file://"+files[video].getAbsolutePath();
-         if(flag==true){ 
-           // reproductor=new VideoPlayerr(path);
-             link(path);
-               clear();
-         }
+       play();
       }
       if(key=='e'){
        
