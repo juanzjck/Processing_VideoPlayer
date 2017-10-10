@@ -9,9 +9,11 @@ ControlP5 cp;
 ControlP5 cp2;
 VideoPlayerr reproductor;
 String [] filesPath;
-int n=20;
+String[] fileImg;
+int n=160;
 int n2=0;
-
+int n3;
+PImage img;
 int video=0;
 Boolean flag=false;
 String path;
@@ -25,8 +27,7 @@ void setup() {
      cp = new ControlP5(this);
      cp.addButton("play").setValue(0).setPosition(850,250).setSize(40,20).activateBy(ControlP5.RELEASE);
      cp2= new ControlP5(this);
-     cp.addButton("mas").setValue(1).setPosition(850,200).setSize(40,20).activateBy(ControlP5.RELEASE);
-     cp.addButton("menos").setValue(2).setPosition(850,300).setSize(40,20).activateBy(ControlP5.RELEASE);
+    
      cp.addButton("siguiente").setValue(3).setPosition(850,450).setSize(40,20).activateBy(ControlP5.RELEASE);
      cp.addButton("anterior").setValue(4).setPosition(750,450).setSize(40,20).activateBy(ControlP5.RELEASE);
    
@@ -38,33 +39,38 @@ void draw() {
  // video=Character.getNumericValue(key); //<>//
   
  fill(140);
-  n=n2+30;
-  
+  n=160+n3;
+  n2=170+n3;
+  // =======folder path===================//
   dir= new File(dataPath("/Users/juansalazar/Documents/proyect/easy-party/mirada_maquina/data/"));
   files= dir.listFiles();
+     
+  
+  
+  
   try{  
  for (int i = 0; i <= files.length - 1; i++)
       {
         String path = files[i].getAbsolutePath();
          
-       if (path.toLowerCase().endsWith(".mp4") )
-        {
-          n=n+25;
-          
-         //filesPath[i]=files[i].getAbsolutePath();
-          println(path.toLowerCase() + ".properties.ser", i);
-          text(path.toLowerCase() + "peusto"+ i,20,n);
+      
+
+        
+      if (path.toLowerCase().endsWith(".jpg")) {
+        img = loadImage(path);
+        image(img,100,n2,250,200);
+          n2=n2+135;
+        
+        
+         } else if (path.toLowerCase().endsWith(".mp4")) {
+          text("puesto:"+i+":    "+path.toLowerCase(),120,n);
+           n = n + 20;
        }
       } 
       //clear();
 }catch(Exception e){}  
     text("El video a reproducir sera del,",750,400);
     text("puesto:"+video,800,420);  
-
-     
-   
-      
- 
   }
 
  public  void play(){
@@ -76,22 +82,17 @@ void draw() {
                clear();
          }
   }
-  public  void mas(){
-       
-         n2=n2-40;
+  public  void siguiente(){
+       video=video+1;
+         n3=n3-40;
          
   }
-   public  void menos(){
-       n2=n2+40;
+   public  void anterior(){
+       n3=n3+40;
+       video=video-1;
          
   }
-    public void siguiente(){
-      video=video+1;
-  }
-  public void anterior(){
-      video=video-1;
-  }
-  
+   
   void keyPressed(){
     if(keyPressed){
       if(key=='r'){

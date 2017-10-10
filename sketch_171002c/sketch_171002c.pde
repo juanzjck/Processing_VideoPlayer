@@ -11,7 +11,7 @@ ControlP5 cp2;
 String [] filesPath;
 int n=20;
 int n2=0;
-
+String[] filesImg;
 int video=0;
 Boolean flag=false;
 String path;
@@ -41,13 +41,23 @@ void draw() {
   
   dir = new File(dataPath("/Users/juansalazar/Documents/proyect/easy-party/mirada_maquina/data/"));
   files = dir.listFiles();
-  try{  
+  for (int i = 0; i <= files.length - 1; i++){
+       if (path.toLowerCase().endsWith(".jpg")) {
+          filesImg[i]= files[i].getAbsolutePath();
+    }else{if (path.toLowerCase().endsWith(".mp4")){
+       filesPath[i]=files[i].getAbsolutePath();
+    
+    }
+     
+    }
+  }
  for (int i = 0; i <= files.length - 1; i++)
       {
+         n=n+120;
+        img = loadImage(filesImg[i]);
+        image(img,100,n,150,100);
+         n = n + 20;
         
-        
-        String path = files[i].getAbsolutePath();
-
         
       if (path.toLowerCase().endsWith(".jpg")) {
         img = loadImage(path);
@@ -66,7 +76,7 @@ void draw() {
        }
       } 
       //clear();
-}catch(Exception e){}  
+
     
     text(video,500,15);  
 
